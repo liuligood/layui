@@ -44,7 +44,7 @@ CREATE TABLE `yp_user` (
 -- ----------------------------
 INSERT INTO `yp_user` VALUES ('1', 'tangsan', '唐三', '', '$2y$13$wf63BXPyUzwXtmhK.pIF9.HOSkRlTlbytkTO.0imGu8QrjCSn5Evu', null, '2', '', '10', '0', '1626182987', null, null);
 INSERT INTO `yp_user` VALUES ('2', 'xiaowu', '小舞', null, '$2y$13$wf63BXPyUzwXtmhK.pIF9.HOSkRlTlbytkTO.0imGu8QrjCSn5Evu', null, '3', null, '10', '1615995639', '1620833713', null, null);
-INSERT INTO `yp_user` VALUES ('3', 'daimubai', '戴沐白', null, '$2y$13$MP/bbW5TgnTfO6DED1IkGu9dD5Xv.P6Eq1X7PDuJ2jb.0X20d7oOe', null, '4', null, '10', '1615995749', '1620833719', null, null);
+INSERT INTO `yp_user` VALUES ('3', 'daimubai', '戴沐白', null, '$2y$13$MP/bbW5TgnTfO6DED1IkGu9dD5Xv.P6Eq1X7PDuJ2jb.0X20d7oOe', null, '4', null, '10', '1615995749', '1637660188', null, null);
 INSERT INTO `yp_user` VALUES ('4', 'aosika', '奥斯卡', null, '$2y$13$wf63BXPyUzwXtmhK.pIF9.HOSkRlTlbytkTO.0imGu8QrjCSn5Evu', null, '7', null, '10', '1615995767', '1620833726', null, null);
 INSERT INTO `yp_user` VALUES ('5', 'mahongjun', '马红俊', null, '$2y$13$R8sRSP40eolhIJXt3dxScO6jeGQqYW8lvU4bQxj8B2wPRQPDYmlHO', null, '8', null, '10', '1615995801', '1620833732', null, null);
 INSERT INTO `yp_user` VALUES ('6', 'ningrongrong', '宁荣荣', null, '$2y$13$1/HIoD6zHcjCr3lJbbaTYuveR4dd7AUB3PuNZcR9mJnRfa5BiIl0G', null, '10', null, '10', '1615996430', '1620833737', null, null);
@@ -160,14 +160,14 @@ CREATE TABLE `yp_menu` (
 -- ----------------------------
 -- Records of yp_menu
 -- ----------------------------
-INSERT INTO `yp_menu` VALUES ('2', '权限管理', null, '', '2', 'layui-icon layui-icon-vercode');
+INSERT INTO `yp_menu` VALUES ('2', '权限管理', null, '', '98', 'layui-icon layui-icon-vercode');
 INSERT INTO `yp_menu` VALUES ('26', '菜单管理', '2', '/rbac/menu/index', '6', '');
 INSERT INTO `yp_menu` VALUES ('27', '路由配制', '2', '/rbac/rbac/routes', '4', '');
 INSERT INTO `yp_menu` VALUES ('28', '用户管理', '2', '/rbac/user/user-list', '1', '');
 INSERT INTO `yp_menu` VALUES ('29', '角色列表', '2', '/rbac/rbac/role-list', '2', '');
 INSERT INTO `yp_menu` VALUES ('30', '权限分配', '2', '/rbac/rbac/perms-list', '3', '');
 INSERT INTO `yp_menu` VALUES ('31', '部门管理', '2', '/rbac/dept/index', '5', '');
-INSERT INTO `yp_menu` VALUES ('32', '系统管理', null, '', '2', 'layui-icon layui-icon-set');
+INSERT INTO `yp_menu` VALUES ('32', '系统管理', null, '', '99', 'layui-icon layui-icon-set');
 INSERT INTO `yp_menu` VALUES ('33', '文件管理', '32', '/rbac/system/index', '1', '');
 INSERT INTO `yp_menu` VALUES ('34', '系统设置', '32', '/rbac/system/sys-set', '2', '');
 INSERT INTO `yp_menu` VALUES ('35', '工作空间', null, '', '1', 'layui-icon layui-icon-console');
@@ -372,6 +372,7 @@ INSERT INTO `yp_auth_item` VALUES ('/site/content', '2', '/site/content', null, 
 INSERT INTO `yp_auth_item` VALUES ('/site/error403', '2', '/site/error403', null, null, '1623424016', '1623424016');
 INSERT INTO `yp_auth_item` VALUES ('/site/error404', '2', '/site/error404', null, null, '1623424016', '1623424016');
 INSERT INTO `yp_auth_item` VALUES ('/site/error500', '2', '/site/error500', null, null, '1623424016', '1623424016');
+INSERT INTO `yp_auth_item` VALUES ('/site/getwebinfo', '2', '/site/getwebinfo', null, null, '1638330938', '1638330938');
 INSERT INTO `yp_auth_item` VALUES ('/site/index', '2', '/site/index', null, null, '1623341677', '1623341677');
 INSERT INTO `yp_auth_item` VALUES ('/site/login', '2', '/site/login', null, null, '1623341677', '1623341677');
 INSERT INTO `yp_auth_item` VALUES ('/site/logout', '2', '/site/logout', null, null, '1623341677', '1623341677');
@@ -425,7 +426,7 @@ INSERT INTO `yp_auth_assignment` VALUES ('路由分配', '2', '1626186757');
 INSERT INTO `yp_auth_assignment` VALUES ('部门管理', '2', '1626186757');
 
 -- ----------------------------
--- Table structure for ts_pro_admin_log
+-- Table structure for yp_admin_log
 -- ----------------------------
 DROP TABLE IF EXISTS `yp_admin_log`;
 CREATE TABLE `yp_admin_log` (
@@ -441,4 +442,10 @@ CREATE TABLE `yp_admin_log` (
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+-- ----------------------------
+-- Records of yp_admin_log
+-- ----------------------------
+INSERT INTO `yp_admin_log` VALUES ('1', 'rbac/user/update', 'http://yiipear.com/rbac/user/update', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', '[]', '{\"data\":{\"username\":\"daimubai\",\"id\":\"3\",\"nickname\":\"戴沐白\",\"dept_id\":\"4\",\"status\":\"on\"}}', '1', '', '127.0.0.1', '1637660188', '1637660188');
+INSERT INTO `yp_admin_log` VALUES ('2', 'rbac/rbac/updateroutes', 'http://fba.com/rbac/rbac/updateroutes', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36', '[]', '{\"children\":[\"\\/site\\/getwebinfo\"]}', '1', '', '127.0.0.1', '1638330938', '1638330938');
