@@ -120,7 +120,9 @@ class SystemController extends Controller
             $res['msg'] = 'FALSE';
 
             $old_file = Yii::$app->basePath.'/web/common/'.$param['cur_route'].'/'.$param['data']['name'];
+            $old_file = iconv("UTF-8","GB2312//IGNORE",$old_file);
             $new_file = Yii::$app->basePath.'/web/common/'.$param['cur_route'].'/'.$param['name'];
+            $new_file = iconv("UTF-8","GB2312//IGNORE",$new_file);
             if(is_dir($old_file) || is_file($old_file)){
                 if (rename($old_file,$new_file)) {
                     $res['code'] = 0;
@@ -163,6 +165,7 @@ class SystemController extends Controller
     public function actionRemove(){
         $param = Yii::$app->getRequest()->post();
         $route =  Yii::$app->basePath.'/web/common/'.$param['route'];
+        $route = iconv("UTF-8","GB2312//IGNORE",$route);
         if(is_file($route)){
             unlink($route);
             return json_encode(['code'=>200,'msg'=>'SUCCESS']);
