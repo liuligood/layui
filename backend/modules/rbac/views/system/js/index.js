@@ -38,6 +38,31 @@ layui.use(['table','layer','form','element','ajax','dropdown','form','upload','a
         reloadDir(data);
     });
 
+    $(document).on('click', '.file-item', function(d) {
+        var file_name = ($(this).attr("data-value"));
+        var file_names = file_name.split('.');
+        var file_path = $('input[name="cur_route"]').val()+file_name
+        if($.inArray(file_names[1],['pdf','jpg','png','jpeg']) > 0){
+            /*layer.open({title:'图标预览', type: 2, area: ['80%', '80%'], fix: true, maxmin: false, content: "/common/"+file_path,btn: ['确定'],yes:function () {
+                layer.close(index)
+            }})*/
+            layer.photos({
+                photos: {
+                    "title": file_name,
+                    "start": 0,
+                    "data": [
+                        {"src": "/common/"+file_path}
+                    ]
+                }
+                , anim: 5
+            });
+        }else if($.inArray(file_names[1],['txt']) >= 0){
+            layer.open({title:file_name, type: 2, area: ['80%', '80%'], fix: true, maxmin: false, content: "/common/"+file_path,btn: ['确定'],yes:function () {
+                layer.close(1)
+            }})
+        }
+    });
+
     $(document).on('click', '.sli', function() {
         $('.route-text').prop('type','text');
         var _val=$(".route-text").val();
@@ -167,15 +192,15 @@ layui.use(['table','layer','form','element','ajax','dropdown','form','upload','a
                     let arr = d.name.split('/');
                     return '<span class="td-dir td-span"></span><a class="dir" style="cursor: pointer;" data-value="'+d.name+'">'+arr[0]+'</a>';
                 }else if(d.file_type == 'jpeg'||d.file_type == 'jpg'||d.file_type == 'png'){
-                    return '<span class="td-span td-image"></span><a  data-value="'+d.name+'">'+d.name+'</a>';
+                    return '<span class="td-span td-image"></span><a class="file-item" style="cursor: pointer;" data-value="'+d.name+'">'+d.name+'</a>';
                 }else if(d.file_type == 'zip'){
-                    return '<span class="td-span td-zip"></span><a  data-value="'+d.name+'">'+d.name+'</a>';
+                    return '<span class="td-span td-zip"></span><a class="file-item" style="cursor: pointer;" data-value="'+d.name+'">'+d.name+'</a>';
                 }else if(d.file_type == 'pdf'){
-                    return '<span class="td-span td-pdf"></span><a  data-value="'+d.name+'">'+d.name+'</a>';
+                    return '<span class="td-span td-pdf"></span><a class="file-item" style="cursor: pointer;" data-value="'+d.name+'">'+d.name+'</a>';
                 }else if(d.file_type == 'txt'){
-                    return '<span class="td-span td-txt"></span><a  data-value="'+d.name+'">'+d.name+'</a>';
+                    return '<span class="td-span td-txt"></span><a class="file-item" style="cursor: pointer;" data-value="'+d.name+'">'+d.name+'</a>';
                 }else{
-                    return '<span class="td-span td-other"></span><a  data-value="'+d.name+'">'+d.name+'</a>';
+                    return '<span class="td-span td-other"></span><a class="file-item" style="cursor: pointer;" data-value="'+d.name+'">'+d.name+'</a>';
                 }
                 }}
             ,{field: 'size', title: '大小',templet:function (d) {
@@ -340,7 +365,7 @@ layui.use(['table','layer','form','element','ajax','dropdown','form','upload','a
                 btn: ['删除', '取消']
             }, function () {
                 ajax.post('/rbac/system/remove',{route:$('input[name="cur_route"]').val()  + obj.data.name},function (d) {
-                    if(d.code == 0 ){
+                    if(d.code == 200 ){
                         layer.msg('删除成功!',{icon:1})
                         reloadDir($('input[name="cur_route"]').val());
                     }else if(d.code == 1){
@@ -361,7 +386,7 @@ layui.use(['table','layer','form','element','ajax','dropdown','form','upload','a
                             ,'cur_route':$('input[name="cur_route"]').val()
                         }
                         ,function (d) {
-                            if(d.code == 0){
+                            if(d.code == 200){
                                 reloadDir($('input[name="cur_route"]').val());
                                 layer.msg(d.msg,{icon:1})
                             }
