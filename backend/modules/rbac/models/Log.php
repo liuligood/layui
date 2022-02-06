@@ -74,7 +74,7 @@ class Log extends ActiveRecord
         $model->url = Yii::$app->request->absoluteUrl;
 
         $headers = Yii::$app->request->headers;
-
+        
         if ($headers->has('User-Agent')) {
             $model->user_agent =  $headers->get('User-Agent');
             //$model->user_agent =  '';
@@ -91,7 +91,14 @@ class Log extends ActiveRecord
         $model->admin_id = Yii::$app->user->identity['id'];
         $model->admin_email = Yii::$app->user->identity['email'];
         $model->ip = Yii::$app->request->userIP;
-        if(!empty(Yii::$app->request->post()) && (strpos($model->route, 'update') !==false || strpos($model->route, 'del') !==false || strpos($model->route, 'active') !==false || strpos($model->route, 'add') !==false || strpos($model->route, 'import') !==false)){
+
+        if(!empty(Yii::$app->request->post()) && (strpos($model->route, 'update') !==false
+                || strpos($model->route, 'del') !==false
+                || strpos($model->route, 'active') !==false
+                || strpos($model->route, 'add') !==false
+                || strpos($model->route, 'import') !==false
+                || strpos($model->route, 'upload') !==false
+            )){
             if(strpos($model->route, 'address') ===false){
                 $model->save();
             }
