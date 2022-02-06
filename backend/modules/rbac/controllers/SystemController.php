@@ -299,7 +299,7 @@ class SystemController extends Controller
 
             if(isset($param['file_name']) && $param['file_name'] != ''){
                 $path = Yii::$app->basePath.'/web/common/'.$param['cur_route'].$param['file_name'];
-
+                $path = iconv("UTF-8","GB2312//IGNORE",$path);
                 if($param['type'] == 'file'){
                     if(is_file($path) ){
                         return json_encode(['code'=>400,'msg'=>'文件已存在']);
