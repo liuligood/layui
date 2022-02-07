@@ -102,13 +102,15 @@ paer_admin_yii2.sql     数据库文件
   nginx配置:
   ```
       listen 80;
-      server_name chat.kongfu.site;
+      server_name test.com;
       index index.php index.html index.htm default.php default.htm default.html;
       root /www/wwwroot/YourProject/backend/web;
   ```
 * 数据库配置  
   源文件:pear_admin_yii2.sql  
   配置路径:common/config/main-local.php
+* 访问  
+  直接请求:test.com
 
 ### 🎨 预览项目
 
