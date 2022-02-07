@@ -301,7 +301,7 @@ layui.use(['table','layer','form','element','ajax','dropdown','form','upload','a
                             ,'cur_route':$('input[name="cur_route"]').val()
                         }
                         ,function (d) {
-                            if(d.code == 0){
+                            if(d.code == 200){
                                 layer.msg(d.msg,{icon:1})
                                 reloadDir($('input[name="cur_route"]').val());
                             }else{
