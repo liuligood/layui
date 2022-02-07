@@ -85,7 +85,7 @@ paer_admin_yii2.sql     数据库文件
 ### 🔧 安装配置
 * 下载项目
   git clone https://gitee.com/imbee/pear-admin-yii2.git
-* 配置项目
+* 配置项目  
   windows配置:
     ```
         <VirtualHost *:80>
@@ -106,7 +106,7 @@ paer_admin_yii2.sql     数据库文件
       index index.php index.html index.htm default.php default.htm default.html;
       root /www/wwwroot/YourProject/backend/web;
   ```
-* 数据库配置 
+* 数据库配置  
   源文件:pear_admin_yii2.sql
   配置路径:common/config/main-local.php
 
