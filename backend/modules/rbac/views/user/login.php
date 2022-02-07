@@ -17,7 +17,7 @@ $this->registerCss($css);
         <img class="logo" src="/plugins/admin/images/logo.png" />
         <div class="title">Yii2 Template</div>
         <div class="desc">
-            相 城 区 最 具 影 响 力 的 设 计 规 范 之 一
+            明 湖 区 最 具 影 响 力 的 设 计 规 范 之 一
         </div>
     </div>
     <div class="layui-form-item">
