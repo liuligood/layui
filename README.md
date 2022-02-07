@@ -83,11 +83,32 @@ paer_admin_yii2.sql     数据库文件
 ```
 
 ### 🔧 安装配置
-
-* git clone https://gitee.com/imbee/pear-admin-yii2.git
-* 更新包composer update(可以忽略)
-* 将网站入口部署至backend/web/目录下面
-* 数据库配置路径：common/config/main-local.php
+* 下载项目
+  git clone https://gitee.com/imbee/pear-admin-yii2.git
+* 配置项目
+  windows配置:
+    ```
+        <VirtualHost *:80>
+        		ServerName test.com
+        		ServerAlias test.com
+        		DocumentRoot D:/wamp/www/YourProject/backend/web
+        		<Directory  D:/wamp/www/YourProject/backend/web>
+        			Options +Indexes +Includes +FollowSymLinks +MultiViews
+        			AllowOverride All
+        			Require local
+        		</Directory>
+        	</VirtualHost>
+    ```
+  nginx配置:
+  ```
+      listen 80;
+      server_name chat.kongfu.site;
+      index index.php index.html index.htm default.php default.htm default.html;
+      root /www/wwwroot/YourProject/backend/web;
+  ```
+* 数据库配置 
+  源文件:pear_admin_yii2.sql
+  配置路径:common/config/main-local.php
 
 ### 🎨 预览项目
 
