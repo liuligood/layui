@@ -107,7 +107,7 @@ paer_admin_yii2.sql     数据库文件
       root /www/wwwroot/YourProject/backend/web;
   ```
 * 数据库配置  
-  源文件:pear_admin_yii2.sql
+  源文件:pear_admin_yii2.sql  
   配置路径:common/config/main-local.php
 
 ### 🎨 预览项目
