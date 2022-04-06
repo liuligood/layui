@@ -109,7 +109,7 @@ paer_admin_yii2.sql     数据库文件
   源文件:pear_admin_yii2.sql  
   配置路径:common/config/main-local.php
   
-### 🔧 4.RBAC权限案例
+### 🧪 4.RBAC权限案例
 #### 4.1 新增方法/路由  
 >.. /backend/controllers/SiteController.php
 ```
