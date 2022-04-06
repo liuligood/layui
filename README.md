@@ -135,8 +135,10 @@ paer_admin_yii2.sql     数据库文件
 ![用户分配角色](/backend/web/plugins/admin/images/demos/16.png)
 
 
-### 🎨 5.预览项目
-
+### 🎨 5.项目预览  
+#### 5.1 在线地址  
+[https://pear.tsaihoo.com/](https://pear.tsaihoo.com/)   
+#### 5.2 截图  
 |  |  |
 |---------------------|---------------------|
 | ![](/backend/web/plugins/admin/images/demos/1.png)  |![](/backend/web/plugins/admin/images/demos/2.png)  |
