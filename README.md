@@ -30,11 +30,11 @@ Pear Admin Yii2
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="/backend/web/plugins/admin/images/demos/1.png" />
 </div>
 
-### 🏄 项目简介
+### 🏄 1.项目简介
 
 Pear Admin Yii2是基于 Yii2 + Pear Admin Layui 实现的企业级高效开发平台，采用经典的RBAC权限管理模式。是一款轻量级、易上手、开发速度快的开发平台。
 
-### 📜 项目结构
+### 📜 2.项目结构
 
 ```
 backend
@@ -82,37 +82,60 @@ paer_admin_yii2.sql     数据库文件
 
 ```
 
-### 🔧 安装配置
-* 下载项目
-  git clone https://gitee.com/imbee/pear-admin-yii2.git
-* 配置项目  
+### 🔧 3.项目配置
+* 本地部署  
   windows配置:
     ```
         <VirtualHost *:80>
-        		ServerName test.com
-        		ServerAlias test.com
-        		DocumentRoot D:/wamp/www/YourProject/backend/web
-        		<Directory  D:/wamp/www/YourProject/backend/web>
-        			Options +Indexes +Includes +FollowSymLinks +MultiViews
-        			AllowOverride All
-        			Require local
-        		</Directory>
-        	</VirtualHost>
+            ServerName xx.com
+            ServerAlias xx.com
+            DocumentRoot D:/wamp/www/YourProject/backend/web
+            <Directory  D:/wamp/www/YourProject/backend/web>
+                Options +Indexes +Includes +FollowSymLinks +MultiViews
+                AllowOverride All
+                Require local
+            </Directory>
+        </VirtualHost>
     ```
   nginx配置:
   ```
       listen 80;
-      server_name test.com;
+      server_name xx.com;
       index index.php index.html index.htm default.php default.htm default.html;
       root /www/wwwroot/YourProject/backend/web;
+      ...
   ```
 * 数据库配置  
   源文件:pear_admin_yii2.sql  
   配置路径:common/config/main-local.php
-* 访问  
-  直接请求:test.com
+  
+### 🔧 4.RBAC权限案例
+#### 4.1 新增方法/路由  
+>.. /backend/controllers/SiteController.php
+```
+    /**
+     * 获取文件信息
+     * */
+    public function actionGetfiles(){
+        ...
+    }
+```
 
-### 🎨 预览项目
+#### 4.2 配置路由
+![配置路由](/backend/web/plugins/admin/images/demos/11.png)
+#### 4.3 新增权限 
+![新增权限](/backend/web/plugins/admin/images/demos/12.png)
+#### 4.4 路由添加到权限
+![路由添加到权限](/backend/web/plugins/admin/images/demos/13.png)
+#### 4.5 新增角色
+![新增角色](/backend/web/plugins/admin/images/demos/14.png)
+#### 4.6 权限添加到角色
+![权限添加到角色](/backend/web/plugins/admin/images/demos/15.png)
+#### 4.7 用户分配角色
+![用户分配角色](/backend/web/plugins/admin/images/demos/16.png)
+
+
+### 🎨 5.预览项目
 
 |  |  |
 |---------------------|---------------------|
