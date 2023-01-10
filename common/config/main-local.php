@@ -3,11 +3,11 @@ return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=pear',
+            'dsn' => 'mysql:host=localhost;dbname=layui-yii2',
             'username' => 'root',
-            'password' => '',
+            'password' => 'root',
             'charset' => 'utf8',
-            'tablePrefix'=>'yp_'
+            'tablePrefix'=>'yp_',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
@@ -17,6 +17,5 @@ return [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
-
     ],
 ];
