@@ -27,7 +27,7 @@ use yii\helpers\Url;
         <button class="layui-btn" data-type="search_lists">搜索</button>
     </div>
 </form>
-    <div class="layui-form" style="padding: 10px 0">
+    <div class="layui-form" style="padding: 10px">
         <button class="layui-btn layui-btn-normal" data-type="export_lists" data-url="<?=Url::to(['demo/exports'])?>">导出</button>
     </div>
     <div class="layui-card-body">
