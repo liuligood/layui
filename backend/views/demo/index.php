@@ -31,7 +31,7 @@ use yii\helpers\Url;
     <thead>
     <tr>
         <th lay-data="{field: 'id', width:80}">ID</th>
-        <th lay-data="{width:130, align:'center',templet:'#goodsImgTpl'}">商品主图</th>
+        <th lay-data="{width:130, align:'center',templet:'#goodsImgTpl'}">主图</th>
         <th lay-data="{field: 'title', align:'left',width:100}">标题</th>
         <th lay-data="{field: 'desc', width:100}">备注</th>
         <th lay-data="{field: 'status', width:120}">状态</th>
