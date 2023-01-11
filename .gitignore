@@ -62,3 +62,6 @@ phpunit.phar
 /backend/web/index-test.php
 /backend/web/robots.txt
 >>>>>>> e00f0d2 (Initialize the warehouse)
+
+/backend/images/img
+
