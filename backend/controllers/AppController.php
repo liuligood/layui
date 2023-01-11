@@ -51,7 +51,7 @@ class AppController extends BaseController
 
         $imgname = $image->name;
         $tmp = $image->tempName;
-        if(!move_uploaded_file($tmp,"F:/wamp64/www/images/img/".$imgname)){
+        if(!move_uploaded_file($tmp,"F:/wamp64/www/layui/images/img/".$imgname)){
             return $this->FormatArray(self::REQUEST_FAIL, "上传失败");
         }
 
