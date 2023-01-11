@@ -36,6 +36,10 @@ class DemoSearch extends Demo
             $where['and'][] = ['like','title',$this->title];
         }
 
+        if(!empty($this->status)){
+            $where['status'] = $this->status;
+        }
+
         return $where;
     }
 }

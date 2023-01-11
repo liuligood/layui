@@ -11,7 +11,7 @@ $this->registerJs($this->render('js/main-index.js'));
     <html>
     <head>
         <meta charset="utf-8">
-        <title>PEAR ADMIN YII2</title>
+        <title>Xie Yu Jia</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta http-equiv="Access-Control-Allow-Origin" content="*">

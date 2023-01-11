@@ -34,6 +34,7 @@ class DemoController extends BaseController
         foreach ($data['list'] as &$info){
             $info['add_time'] = Yii::$app->formatter->asDatetime($info['add_time']);
             $info['update_time'] = Yii::$app->formatter->asDatetime($info['update_time']);
+            $info['status'] = Demo::$status_maps[$info['status']];
         }
         return $this->FormatLayerTable(self::REQUEST_LAY_SUCCESS,"获取成功",$data['list'],$data['pages']->totalCount);
     }

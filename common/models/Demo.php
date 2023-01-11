@@ -16,6 +16,14 @@ use Yii;
  */
 class Demo extends BaseAR
 {
+    const STATUS_OPEN = 1;
+    const STATUS_CLOSE = 2;
+    
+    public static $status_maps = [
+        self::STATUS_OPEN => '正常',
+        self::STATUS_CLOSE => '关闭',
+    ];
+
     /**
      * {@inheritdoc}
      */
