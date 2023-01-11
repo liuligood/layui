@@ -11,6 +11,7 @@ use Yii;
  * @property string $title 标题
  * @property string $desc 备注
  * @property int $status 状态
+ * @property sting goods_img 图片
  * @property int $add_time 添加时间
  * @property int $update_time 修改时间
  */
@@ -40,6 +41,7 @@ class Demo extends BaseAR
         return [
             [['status', 'add_time', 'update_time'], 'integer'],
             [['title', 'desc'], 'string', 'max' => 255],
+            [['goods_img'],'string'],
         ];
     }
 

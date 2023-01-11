@@ -3,15 +3,13 @@ layui.config({
     base: '/static/plugins/layui-extend/',
     version: "2022012506"
 }).extend({
-    layCascader: 'laycascader/cascader',
-    tinymce: 'tinymce/tinymce'
-}).use(['form','layer','laytpl','layCascader','tinymce','common'],function(){
+    layCascader: 'laycascader/cascader'
+}).use(['form','layer','laytpl','layCascader','common'],function(){
     form = layui.form;
 
     $ = layui.jquery;
 
     var layCascader = layui.layCascader;
-    var tinymce = layui.tinymce;
     var laytpl = layui.laytpl;
     var common = layui.common;
     var is_init_attribute = 0;
@@ -195,7 +193,7 @@ layui.config({
         var img_inp = $(this).parent().parent().find('.img-url-inp');
         var img_url = img_inp.val();
         if (img_url == ''){
-            layer.msg("图片链接不能为空");
+            layer.msg("图片链接不能为空");  
             return false;
         }
 

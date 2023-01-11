@@ -31,6 +31,7 @@ use yii\helpers\Url;
     <thead>
     <tr>
         <th lay-data="{field: 'id', width:80}">ID</th>
+        <th lay-data="{width:130, align:'center',templet:'#goodsImgTpl'}">商品主图</th>
         <th lay-data="{field: 'title', align:'left',width:100}">标题</th>
         <th lay-data="{field: 'desc', width:100}">备注</th>
         <th lay-data="{field: 'status', width:120}">状态</th>
@@ -49,8 +50,17 @@ use yii\helpers\Url;
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="update" data-url="<?=Url::to(['demo/update'])?>?id={{ d.id }}" data-title="编辑" data-callback_title="demo列表">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete" data-url="<?=Url::to(['demo/delete'])?>?id={{ d.id }}">删除</a>
 </script>
-
+<script type="text/html" id="goodsImgTpl">
+    <a href="{{d.goods_img}}" data-lightbox="pic">
+        <img class="layui-circle" src="{{d.goods_img}}?imageView2/2/h/120" width="30"/>
+    </a>
+</script>
 <script>
     const tableName="demo";
 </script>
-<?=$this->registerJsFile("@adminPageJs/base/lists.js")?>
+<?php
+$this->registerJsFile("@adminPageJs/base/lists.js?v=0.0.4.6");
+$this->registerJsFile("@adminPageJs/goods-selection/lists.js?v=0.0.4.6");
+$this->registerCssFile("@adminPlugins/lightbox2/css/lightbox.min.css", ['depends' => 'yii\web\JqueryAsset']);
+$this->registerJsFile("@adminPlugins/lightbox2/js/lightbox.min.js", ['depends' => 'yii\web\JqueryAsset']);
+?>

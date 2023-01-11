@@ -32,6 +32,8 @@ class DemoController extends BaseController
         $where = $searchModel->search(Yii::$app->request->queryParams);
         $data = $this->lists($where);
         foreach ($data['list'] as &$info){
+            $image = json_decode($info['goods_img'], true);
+            $info['goods_img'] = empty($image) || !is_array($image) ? '' : current($image)['img'];
             $info['add_time'] = Yii::$app->formatter->asDatetime($info['add_time']);
             $info['update_time'] = Yii::$app->formatter->asDatetime($info['update_time']);
             $info['status'] = Demo::$status_maps[$info['status']];
@@ -55,6 +57,7 @@ class DemoController extends BaseController
             $model['title'] = $post['title'];
             $model['desc'] = $post['desc'];
             $model['status'] = 1;
+            $model['goods_img'] = $post['goods_img'];
             if ($model->save()) {
                 return $this->FormatArray(self::REQUEST_SUCCESS, "添加成功", []);
             } else {
