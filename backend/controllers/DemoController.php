@@ -6,6 +6,7 @@ use Yii;
 use common\models\Demo;
 use backend\models\search\DemoSearch;
 use common\base\BaseController;
+use common\services\sys\ExportService;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -114,6 +115,32 @@ class DemoController extends BaseController
             return $this->FormatArray(self::REQUEST_SUCCESS, "删除失败", []);
         }
     }
+
+    public function actionExports(){
+        \Yii::$app->response->format = Response::FORMAT_JSON;
+        $searchModel=new DemoSearch();
+        $where = $searchModel->search(Yii::$app->request->queryParams);
+        $export_ser = new ExportService();
+        $sort = 'add_time desc';
+        $list = Demo::getAllByCond($where,$sort);
+
+        $data = [];
+        foreach ($list as $k => $v) {
+            $data[$k]['title'] = $v['title'];
+            $data[$k]['desc'] = $v['desc'];
+            $data[$k]['status'] = Demo::$status_maps[$v['status']];
+        }
+
+        $column = [
+            'title' => '标题',
+            'desc' => '备注',
+            'status' => '状态',
+        ];
+
+        $result = $export_ser->forData($column,$data,'导出Demo' . date('ymdhis'));
+        return $this->FormatArray(self::REQUEST_SUCCESS, "", $result);
+    }
+
 
     /**
      * Finds the Demo model based on its primary key value.

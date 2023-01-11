@@ -12,20 +12,24 @@ use yii\helpers\Url;
         </div>
     </blockquote>
 </form>
+<form>
+    <div class="layui-form lay-search" style="padding-left: 10px">
+        ID：
+        <div class="layui-inline">
+            <input class="layui-input search-con" name="DemoSearch[id]" autocomplete="off">
+        </div>
 
-<div class="lay-search" style="padding-left: 10px">
-    ID：
-    <div class="layui-inline">
-        <input class="layui-input search-con" name="DemoSearch[id]" autocomplete="off">
+        标题：
+        <div class="layui-inline">
+            <input class="layui-input search-con" name="DemoSearch[title]" autocomplete="off">
+        </div>
+
+        <button class="layui-btn" data-type="search_lists">搜索</button>
     </div>
-
-    标题：
-    <div class="layui-inline">
-        <input class="layui-input search-con" name="DemoSearch[title]" autocomplete="off">
+</form>
+    <div class="layui-form" style="padding: 10px 0">
+        <button class="layui-btn layui-btn-normal" data-type="export_lists" data-url="<?=Url::to(['demo/exports'])?>">导出</button>
     </div>
-
-    <button class="layui-btn" data-type="search_lists">搜索</button>
-</div>
     <div class="layui-card-body">
 <table id="demo" class="layui-table" lay-data="{url:'<?=Url::to(['demo/list'])?>', height : 'full-20', cellMinWidth : 95, page:{limits:[20, 50, 100, 500, 1000]}}" lay-filter="demo">
     <thead>
@@ -63,4 +67,10 @@ $this->registerJsFile("@adminPageJs/base/lists.js?v=0.0.4.6");
 $this->registerJsFile("@adminPageJs/goods-selection/lists.js?v=0.0.4.6");
 $this->registerCssFile("@adminPlugins/lightbox2/css/lightbox.min.css", ['depends' => 'yii\web\JqueryAsset']);
 $this->registerJsFile("@adminPlugins/lightbox2/js/lightbox.min.js", ['depends' => 'yii\web\JqueryAsset']);
+?>
+<?php
+$this->registerJsFile('@adminPlugins/export/xlsx.core.min.js?v=1',['depends'=>'yii\web\JqueryAsset']);
+$this->registerJsFile('@adminPlugins/export/export-excel.js?v=1',['depends'=>'yii\web\JqueryAsset']);
+$this->registerJsFile('@adminPlugins/export/export.js?v=1.2',['depends'=>'yii\web\JqueryAsset']);
+$this->registerJsFile('@adminPlugins/export/export-function.js?v=1.3',['depends'=>'yii\web\JqueryAsset']);
 ?>
