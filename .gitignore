@@ -64,4 +64,4 @@ phpunit.phar
 >>>>>>> e00f0d2 (Initialize the warehouse)
 
 /backend/web/images/img
-/backend/runtime/logs/app.log
+log/*
