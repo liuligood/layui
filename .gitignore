@@ -63,5 +63,5 @@ phpunit.phar
 /backend/web/robots.txt
 >>>>>>> e00f0d2 (Initialize the warehouse)
 
-/backend/images/img
-
+/backend/web/images/img
+/backend/runtime/logs/app.log
