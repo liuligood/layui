@@ -6,7 +6,7 @@ use yii\helpers\Url;
     <div class="layui-card">
 <div class="lay-lists">
 <form class="layui-form">
-    <blockquote class="layui-elem-quote quoteBox">
+    <blockquote class="layui-elem-quote quoteBox" style=" margin-top: 15px;">
         <div class="layui-inline">
             <a class="layui-btn" data-type="url" data-title="添加" data-url="<?=Url::to(['demo/create'])?>" data-callback_title = "demo列表" >添加</a>
         </div>
