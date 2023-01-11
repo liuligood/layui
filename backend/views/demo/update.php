@@ -2,6 +2,9 @@
 /**
  * @var $this \yii\web\View;
  */
+
+use common\models\Demo;
+use yii\bootstrap\Html;
 use yii\helpers\Url;
 ?>
 <style>
@@ -27,6 +30,12 @@ use yii\helpers\Url;
             </div>
         </div>
 
+        <div class="layui-form-item">
+            <label class="layui-form-label">备注</label>
+            <div class="layui-input-block">
+                <?= Html::dropDownList('status', $info['status'], Demo::$status_maps,
+                ['lay-ignore'=>'lay-ignore','class'=>'layui-input search-con ys-select2' ,'lay-search'=>'lay-search' ]) ?>
+        </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <input type="hidden" value="<?=$info['id']?>" name="id">

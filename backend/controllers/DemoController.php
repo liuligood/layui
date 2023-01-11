@@ -51,7 +51,11 @@ class DemoController extends BaseController
         if ($req->isPost) {
             Yii::$app->response->format = Response::FORMAT_JSON;
             $model = new Demo();
-            if ($model->load($req->post(), '') && $model->save()) {
+            $post = $req->post();
+            $model['title'] = $post['title'];
+            $model['desc'] = $post['desc'];
+            $model['status'] = 1;
+            if ($model->save()) {
                 return $this->FormatArray(self::REQUEST_SUCCESS, "添加成功", []);
             } else {
                 return $this->FormatArray(self::REQUEST_FAIL, $model->getErrorSummary(false)[0], []);
