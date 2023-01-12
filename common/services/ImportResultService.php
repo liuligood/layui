@@ -9,7 +9,7 @@ use Yii;
 class ImportResultService
 {
 
-    // const DATA_CACHE_PERFIX = 'com:import_result_cache:';
+    const DATA_CACHE_PERFIX = 'com:import_result_cache:';
 
     /**
      * 设置缓存
@@ -51,7 +51,7 @@ class ImportResultService
      * @return string
      */
     public static function genKey(){
-        return common\services\CommonUtil::randString(6);
+        return CommonUtil::randString(6);
     }
 
 

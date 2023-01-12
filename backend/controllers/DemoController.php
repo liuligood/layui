@@ -9,6 +9,7 @@ use moonland\phpexcel\Excel;
 use common\base\BaseController;
 use common\services\ImportResultService;
 use common\services\sys\ExportService;
+use XLSXWriter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -26,7 +27,8 @@ class DemoController extends BaseController
     }
 
     public function actionIndex()
-    {
+    {   
+        phpinfo();
         return $this->render('index');
     }
 
@@ -200,7 +202,7 @@ class DemoController extends BaseController
                 $$rowMapKey = isset($row[$rowKey]) ? trim($row[$rowKey]) : '';
             }
 
-            if ((empty($title) && empty($desc))) {
+            if ((empty($title) || empty($desc))) {
                 $errors[$i] = '标题备注不能为空';
                 continue;
             }
@@ -217,22 +219,22 @@ class DemoController extends BaseController
             }
             $success++;
         }
-        // if(!empty($errors)) {
-        //     $lists = [];
-        //     foreach ($errors as $i => $error) {
-        //         $row = $data[$i];
-        //         $info = [];
-        //         $info['index'] = $i;
-        //         $info['rvalue1'] = empty($row[$keyMap['title']])?'':$row[$keyMap['title']];
-        //         $info['rvalue2'] = empty($row[$keyMap['desc']])?'':$row[$keyMap['desc']];
-        //         $info['reason'] = $error;
-        //         $lists[] = $info;
-        //     }
-        //     $key = (new ImportResultService())->gen('Demo', $lists);
-        //     return $this->FormatArray(self::REQUEST_FAIL, "导入失败问题", [
-        //         'key' => $key
-        //     ]);
-        // }
+        if(!empty($errors)) {
+            $lists = [];
+            foreach ($errors as $i => $error) {
+                $row = $data[$i];
+                $info = [];
+                $info['index'] = $i;
+                $info['rvalue1'] = empty($row[$keyMap['title']])?'':$row[$keyMap['title']];
+                $info['rvalue2'] = empty($row[$keyMap['desc']])?'':$row[$keyMap['desc']];
+                $info['reason'] = $error;
+                $lists[] = $info;
+            }
+            $key = (new ImportResultService())->gen('Demo', $lists);
+            return $this->FormatArray(self::REQUEST_FAIL, "导入失败问题", [
+                'key' => $key
+            ]);
+        }
         return $this->FormatArray(self::REQUEST_SUCCESS, "导入成功", []);
     }
 
