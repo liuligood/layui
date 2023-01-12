@@ -29,6 +29,7 @@ use yii\helpers\Url;
 </form>
     <div class="layui-form" style="padding: 10px">
         <button class="layui-btn layui-btn-normal" data-type="export_lists" data-url="<?=Url::to(['demo/exports'])?>">导出</button>
+        <button class="layui-btn layui-btn-primary ys-upload" lay-data="{url: '/demo/import',accept: 'file'}">导入</button>
     </div>
     <div class="layui-card-body">
 <table id="demo" class="layui-table" lay-data="{url:'<?=Url::to(['demo/list'])?>', height : 'full-20', cellMinWidth : 95, page:{limits:[20, 50, 100, 500, 1000]}}" lay-filter="demo">

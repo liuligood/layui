@@ -5,12 +5,15 @@ namespace backend\controllers;
 use Yii;
 use common\models\Demo;
 use backend\models\search\DemoSearch;
+use moonland\phpexcel\Excel;
 use common\base\BaseController;
+use common\services\ImportResultService;
 use common\services\sys\ExportService;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use yii\web\UploadedFile;
 
 /**
  * DemoController implements the CRUD actions for Demo model.
@@ -140,6 +143,99 @@ class DemoController extends BaseController
         $result = $export_ser->forData($column,$data,'导出Demo' . date('ymdhis'));
         return $this->FormatArray(self::REQUEST_SUCCESS, "", $result);
     }
+
+
+    /**
+     * @routeName 导入回款
+     * @routeDescription 导入回款
+     * @return array
+     * @throws
+     */
+    public function actionImport()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $file = UploadedFile::getInstanceByName('file');
+        if (!in_array($file->extension, ['xlsx', 'xls'])) {
+            return $this->FormatArray(self::REQUEST_FAIL, "只允许使用以下文件扩展名的文件：xlsx, xls。", []);
+        }
+
+        // 读取excel文件
+        $data = Excel::import($file->tempName, [
+            'setFirstRecordAsKeys' => false,
+        ]);
+
+        // 多Sheet
+        if (isset($data[0])) {
+            $data = $data[0];
+        }
+
+        $rowKeyTitles = [
+            'title' => '标题',
+            'desc' => '备注',
+        ];
+        $rowTitles = $data[1];
+        $keyMap = [];
+        foreach ($rowKeyTitles as $k => $v) {
+            $excelKey = array_search($v, $rowTitles);
+            $keyMap[$k] = $excelKey;
+        }
+
+        if(empty($keyMap['title']) || empty($keyMap['desc'])) {
+            return $this->FormatArray(self::REQUEST_FAIL, "excel表格式错误", []);
+        }
+
+
+        $count = count($data);
+        $success = 0;
+        $errors = [];
+        for ($i = 2; $i <= $count; $i++) {
+            $row = $data[$i];
+            foreach ($row as &$rowValue) {
+                $rowValue = !empty($rowValue) ? str_replace(' ', ' ', $rowValue) : '';
+                $rowValue = !empty($rowValue) ? trim($rowValue) : '';
+            }
+
+            foreach (array_keys($rowKeyTitles) as $rowMapKey) {
+                $rowKey = isset($keyMap[$rowMapKey]) ? $keyMap[$rowMapKey] : '';
+                $$rowMapKey = isset($row[$rowKey]) ? trim($row[$rowKey]) : '';
+            }
+
+            if ((empty($title) && empty($desc))) {
+                $errors[$i] = '标题备注不能为空';
+                continue;
+            }
+
+            try {
+                $model = new Demo();
+                $model['status'] = 1;
+                $model['title'] = $title;
+                $model['desc'] = $desc;
+                $model->save();
+            }catch (\Exception $e) {
+                $errors[$i] = $e->getMessage();
+                continue;
+            }
+            $success++;
+        }
+        // if(!empty($errors)) {
+        //     $lists = [];
+        //     foreach ($errors as $i => $error) {
+        //         $row = $data[$i];
+        //         $info = [];
+        //         $info['index'] = $i;
+        //         $info['rvalue1'] = empty($row[$keyMap['title']])?'':$row[$keyMap['title']];
+        //         $info['rvalue2'] = empty($row[$keyMap['desc']])?'':$row[$keyMap['desc']];
+        //         $info['reason'] = $error;
+        //         $lists[] = $info;
+        //     }
+        //     $key = (new ImportResultService())->gen('Demo', $lists);
+        //     return $this->FormatArray(self::REQUEST_FAIL, "导入失败问题", [
+        //         'key' => $key
+        //     ]);
+        // }
+        return $this->FormatArray(self::REQUEST_SUCCESS, "导入成功", []);
+    }
+
 
 
     /**
