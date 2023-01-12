@@ -131,15 +131,16 @@ class DemoController extends BaseController
 
         $data = [];
         foreach ($list as $k => $v) {
+            $url = json_decode($v['goods_img']);
+            $img = $url[0]->img;
             $data[$k]['title'] = $v['title'];
             $data[$k]['desc'] = $v['desc'];
-            $data[$k]['status'] = Demo::$status_maps[$v['status']];
+            $data[$k]['goods_img'] = "http://www.layui.com".$img;
         }
-
         $column = [
             'title' => '标题',
             'desc' => '备注',
-            'status' => '状态',
+            'goods_img' => '图片链接',
         ];
 
         $result = $export_ser->forData($column,$data,'导出Demo' . date('ymdhis'));
@@ -174,6 +175,7 @@ class DemoController extends BaseController
         $rowKeyTitles = [
             'title' => '标题',
             'desc' => '备注',
+            'goods_img' => '图片',
         ];
         $rowTitles = $data[1];
         $keyMap = [];
@@ -208,6 +210,7 @@ class DemoController extends BaseController
             }
 
             try {
+                var_dump($goods_img);exit();
                 $model = new Demo();
                 $model['status'] = 1;
                 $model['title'] = $title;
