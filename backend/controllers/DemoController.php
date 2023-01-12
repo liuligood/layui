@@ -29,7 +29,6 @@ class DemoController extends BaseController
 
     public function actionIndex()
     {   
-        $a = new XLSXWriter();
         return $this->render('index');
     }
 

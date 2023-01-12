@@ -66,3 +66,4 @@ phpunit.phar
 /backend/web/robots.txt
 >>>>>>> e00f0d2 (Initialize the warehouse)
 
+*.bin
