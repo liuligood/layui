@@ -10,6 +10,7 @@ use common\base\BaseController;
 use common\services\ImportResultService;
 use common\services\sys\ExportService;
 use XLSXWriter;
+use XMLWriter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -28,7 +29,7 @@ class DemoController extends BaseController
 
     public function actionIndex()
     {   
-        phpinfo();
+        $a = new XLSXWriter();
         return $this->render('index');
     }
 
