@@ -15,21 +15,21 @@ $this->registerCss($css);
     <?php $form = ActiveForm::begin(['id' => 'login-form','options'=>['class' => 'layui-form']]); ?>
     <div class="layui-form-item">
         <img class="logo" src="/plugins/admin/images/logo.png" />
-        <div class="title">Yii2 Template</div>
+        <div class="title">Xie Xiu Hua</div>
         <div class="desc">
-            明 湖 区 最 具 影 响 力 的 设 计 规 范 之 一
+            绣 花 管 理 后 台
         </div>
     </div>
     <div class="layui-form-item">
-        <?= $form->field($model, 'username')->label(false)->textInput(['class'=>'layui-input','placeholder'=>'账 户:admin','value'=>'tangsan']) ?>
+        <?= $form->field($model, 'username')->label(false)->textInput(['class'=>'layui-input','placeholder'=>'请输入账号']) ?>
     </div>
     <div class="layui-form-item">
-        <?= $form->field($model, 'password')->label(false)->passwordInput(['class'=>'layui-input','placeholder'=>'密 码 : admin ','value'=>'123']) ?>
+        <?= $form->field($model, 'password')->label(false)->passwordInput(['class'=>'layui-input','placeholder'=>'请输入密码']) ?>
     </div>
-    <!--<div class="layui-form-item" >
+    <!-- <div class="layui-form-item" >
         <input placeholder="验证码 : "  hover class="code layui-input layui-input-inline"  />
         <img src="/plugins/admin/images/captcha.gif" class="codeImage" />
-    </div>-->
+    </div> -->
     <div class="layui-form-item">
         <div id="slider"></div>
     </div>
