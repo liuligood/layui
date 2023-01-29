@@ -52,7 +52,7 @@ use yii\helpers\Url;
 </div>
 <!--操作-->
 <script type="text/html" id="listBar">
-    <a class="layui-btn layui-btn-xs" lay-event="down" data-url="<?=Url::to(['app/download'])?>?id={{ d.id }}">打包图片</a>
+    <a class="layui-btn layui-btn-xs" lay-event="down" data-url="<?=Url::to(['app/download'])?>?id={{ d.id }}">打包数据</a>
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="update" data-url="<?=Url::to(['demo/update'])?>?id={{ d.id }}" data-title="编辑" data-callback_title="demo列表">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete" data-url="<?=Url::to(['demo/delete'])?>?id={{ d.id }}">删除</a>
 </script>
