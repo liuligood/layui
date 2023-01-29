@@ -60,10 +60,20 @@ class DemoController extends BaseController
             Yii::$app->response->format = Response::FORMAT_JSON;
             $model = new Demo();
             $post = $req->post();
+            $model['files'] = '';
+            if(isset($post['word'])){
+                $files = [];
+                foreach($post['word'] as $v){
+                    $files[] = ['file' => $v];
+                }
+                $files = json_encode($files,JSON_UNESCAPED_UNICODE);
+                $model['files'] = $files;
+            }
             $model['title'] = $post['title'];
             $model['desc'] = $post['desc'];
             $model['status'] = 1;
             $model['goods_img'] = $post['goods_img'];
+            $model['files'] = empty($files) ? '' : $files;
             if ($model->save()) {
                 return $this->FormatArray(self::REQUEST_SUCCESS, "添加成功", []);
             } else {
@@ -86,19 +96,36 @@ class DemoController extends BaseController
             $id = $req->post('id');
         }
         $model = $this->findModel($id);
+        $files = [];
+        if(!empty($model['files'])){
+            foreach(json_decode($model['files']) as $v){
+                $files[] = $v->file;
+            }
+            $files = json_encode($files,JSON_UNESCAPED_UNICODE);
+        }
         if ($req->isPost) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            if ($model->load($req->post(), '') == false) {
-                return $this->FormatArray(self::REQUEST_FAIL, "参数异常", []);
+            $post = $req->post();
+            $model['files'] = '';
+            if(isset($post['word'])){
+                $files = [];
+                foreach($post['word'] as $v){
+                    $files[] = ['file' => $v];
+                }
+                $files = json_encode($files,JSON_UNESCAPED_UNICODE);
+                $model['files'] = $files;
             }
-
+            $model['title'] = $post['title'];
+            $model['desc'] = $post['desc'];
+            $model['status'] = $post['status'];
+            $model['goods_img'] = $post['goods_img'];
             if ($model->save()) {
                 return $this->FormatArray(self::REQUEST_SUCCESS, "更新成功", []);
             } else {
                 return $this->FormatArray(self::REQUEST_FAIL, $model->getErrorSummary(false)[0], []);
             }
         } else {
-            return $this->render('update', ['info' => $model->toArray()]);
+            return $this->render('update', ['info' => $model->toArray(),'files'=>$files]);
         }
     }
 

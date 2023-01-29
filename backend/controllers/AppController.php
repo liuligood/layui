@@ -106,7 +106,8 @@ class AppController extends BaseController
 
         $data = [];
         $data['file'] ="/images/files/".$filename;
-        return $data;
+        $data['name'] = $filename;
+        return $this->FormatArray(self::REQUEST_SUCCESS, "上传成功", $data);
     }
 
 
@@ -122,10 +123,18 @@ class AppController extends BaseController
         $first_filename = 'F:/wamp64/www/layui/backend/web';
         $id = $req->get('id');
         $model = Demo::findOne($id);
-        $img = json_decode($model['goods_img']);
+        if(empty($model['goods_img']) && empty($model['files'])){
+            return $this->FormatArray(self::REQUEST_FAIL, "图片或者文件为空,下载失败");
+        }
+        $img = empty($model['goods_img']) ? [] : json_decode($model['goods_img']);
+        $file = empty($model['files']) ? [] : json_decode($model['files']);
         $list = [];
+        $list_file = [];
         foreach($img as $v){
             $list[] = $v->img; 
+        }
+        foreach($file as $v){
+            $list_file[] = $v->file;
         }
         $zip = new ZipArchive();
         $zip_time =  $model['title'].time().".zip"; // 压缩的目录名
@@ -134,6 +143,10 @@ class AppController extends BaseController
             foreach($list as $image){
                 $file_name = $first_filename.$image;
                 $zip->addFile($file_name,basename($file_name)); 
+            }
+            foreach($list_file as $file_v){
+                $file_names = $first_filename."/images/files/".$file_v;
+                $zip->addFile($file_names,basename($file_names)); 
             }
         } 
         $rs = $zip->close();

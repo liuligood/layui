@@ -2,10 +2,7 @@ var form;
 layui.config({
     base: '/static/plugins/layui-extend/',
     version: "2022012506"
-}).extend({
-    layCascader: 'laycascader/cascader',
-    tinymce: 'tinymce/tinymce'
-}).use(['form','layer','laytpl','layCascader','tinymce','common'],function(){
+}).use(['form','layer','laytpl','common','upload'],function(){
     form = layui.form;
 
     $ = layui.jquery;
@@ -45,13 +42,42 @@ layui.config({
         });
     }
 
+    var upload = layui.upload;
+    upload.render({
+        elem: '.ys-upload-down'
+        ,before: function(){
+            //layer.tips('接口地址：'+ this.url, this.item, {tips: 1});
+        }
+        ,done: function(res, index, upload){
+            //var item = this.item;
+            //console.log(item); //获取当前触发上传的元素，layui 2.1.0 新增
+            if (res.status == 1) {
+                layer.msg(res.msg, {icon: 1});
+                add_tag(res.data.name);
+            } else if (res.status == 0){
+                layer.msg(res.msg, {icon: 5});
+                if(res.data.key) {
+                    window.location.href = '/app/get-import-result?key=' + res.data.key;
+                }
+            }
+        }
+    });
+
+
+    if(files != '1'){
+        for(var i = 0;i<files.length;i++){
+            add_tag(files[i]);
+        }
+    }
+
+
     /*tinymce.render({
         elem: "#goods_content"
         , height: 300
     });*/
     var is_click_edit = false;
 
-    $('#add').on('click',".frequently_category_a",function(data){
+    $('#update_goods').on('click',".frequently_category_a",function(data){
         var id = $(this).data('id');
         catSelCascader.setValue(id+'');
     }).on('click',"#add-source",function(data){
@@ -88,36 +114,6 @@ layui.config({
         return false;
     }).on('click',".del_tag",function(data) {//立即禁用
         $(this).parent().parent().remove();
-    }).on('keydown',"#word",function(e) {//立即禁用
-        var curKey = e.which;
-        if (curKey == 13) {
-            var tag_name = $(this).val();
-            tag_name = tag_name.replace(/，/g, ',');
-            //tag_name = tag_name.replace(/\s/ig, ',');
-            tag_name = tag_name.split(",");
-            $.each(tag_name, function () {
-                if(this != '') {
-                    add_tag(this);
-                }
-            });
-
-            $(this).val('');
-            e.stopPropagation();
-            e.preventDefault();
-            return false;
-        }
-    }).on('blur',"#word",function(e) {//立即禁用
-        var tag_name = $(this).val();
-        tag_name = tag_name.replace(/，/g, ',');
-        //tag_name = tag_name.replace(/\s/ig, ',');
-        tag_name = tag_name.split(",");
-        //console.log(tag_name)
-        $.each(tag_name, function () {
-            if(this != '') {
-                add_tag(this);
-            }
-        });
-        $(this).val('');
     });
 
 

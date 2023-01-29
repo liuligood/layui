@@ -41,7 +41,7 @@ class Demo extends BaseAR
         return [
             [['status', 'add_time', 'update_time'], 'integer'],
             [['title', 'desc'], 'string', 'max' => 255],
-            [['goods_img'],'string'],
+            [['goods_img','files'],'string'],
         ];
     }
 

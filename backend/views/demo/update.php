@@ -37,6 +37,21 @@ use yii\helpers\Url;
                 ['lay-ignore'=>'lay-ignore','class'=>'layui-input search-con ys-select2' ,'lay-search'=>'lay-search' ]) ?>
         </div>
 
+
+        <div class="layui-form-item">
+            <div class="layui-inline layui-col-md12">
+                <label class="layui-form-label">其他文件</label>
+                <div class="layui-input-block" style="border:1px solid #eee;">
+                    <div id="word_div" style="padding: 0 5px">
+                    </div>
+                    <input type="text" style="width: 647px;border:0px" id="word" placeholder="上传不是图片的文件" value="" class="layui-input" autocomplete="off" disabled>
+                </div>
+                <div class="layui-input-block">
+                    <a class="layui-btn layui-btn-warm ys-upload-down" lay-data="{url: '/app/upload-file',accept: 'file'}" style="margin-top: 10px;">上传文件</a>
+                </div>
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">图片</label>
             <div class="layui-inline">
@@ -135,8 +150,20 @@ use yii\helpers\Url;
         </div>
     </li>
 </script>
+<script id="tag_tpl" type="text/html">
+    <span class="label layui-bg-blue" style="border-radius: 15px;margin: 5px 5px 0 0; padding: 3px 7px 3px 15px; font-size: 14px; display: inline-block;">
+        {{d.tag_name}}
+        <a href="javascript:;"><i class="layui-icon layui-icon-close del_tag" style="color: #FFFFFF;margin-left: 5px"></i></a>
+        <input class="word_ipt" type="hidden" name="word[]" value="{{d.tag_name}}" >
+    </span>
+</script>
+<script>
+    var files = <?=empty($files) ? '1' : $files?>;
+</script>
 <?=$this->registerJsFile("@adminPageJs/base/form.js?".time());?>
 <?=$this->registerJsFile("@adminPageJs/goods-selection/form.js?".time());?>
+<?=$this->registerJsFile("@adminPageJs/forbidden-word/form.js?".time());?>
+<?=$this->registerJsFile("@adminPageJs/base/lists.js?v=0.0.4.6");?>
 <?php
 $this->registerCssFile("@adminPlugins/lightbox2/css/lightbox.min.css", ['depends' => 'yii\web\JqueryAsset']);
 $this->registerJsFile("@adminPlugins/lightbox2/js/lightbox.min.js", ['depends' => 'yii\web\JqueryAsset']);
