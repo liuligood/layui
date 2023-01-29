@@ -30,6 +30,7 @@ use yii\helpers\Url;
     <div class="layui-form" style="padding: 10px">
         <button class="layui-btn layui-btn-normal" data-type="export_lists" data-url="<?=Url::to(['demo/exports'])?>">导出</button>
         <button class="layui-btn layui-btn-primary ys-upload" lay-data="{url: '/demo/import',accept: 'file'}">导入</button>
+        <button class="layui-btn layui-btn-warm ys-upload" lay-data="{url: '/app/upload-file',accept: 'file'}">上传文件</button>
     </div>
     <div class="layui-card-body">
 <table id="demo" class="layui-table" lay-data="{url:'<?=Url::to(['demo/list'])?>', height : 'full-20', cellMinWidth : 95, page:{limits:[20, 50, 100, 500, 1000]}}" lay-filter="demo">
@@ -52,6 +53,7 @@ use yii\helpers\Url;
 </div>
 <!--操作-->
 <script type="text/html" id="listBar">
+    <a class="layui-btn layui-btn-xs" lay-event="down" data-url="<?=Url::to(['app/download'])?>?id={{ d.id }}">打包图片</a>
     <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="update" data-url="<?=Url::to(['demo/update'])?>?id={{ d.id }}" data-title="编辑" data-callback_title="demo列表">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete" data-url="<?=Url::to(['demo/delete'])?>?id={{ d.id }}">删除</a>
 </script>

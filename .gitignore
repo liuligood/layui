@@ -55,6 +55,7 @@ phpunit.phar
 /.vagrant
 
 /backend/web/images/img
+/backend/web/images/files
 /backend/runtime/logs/app.log
 
 # ignore generated files

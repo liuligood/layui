@@ -42,6 +42,28 @@ layui.config({
             var _self = $(this);
             cwh_export(_self,layer);
         },
+        export_files:function (event) {
+            var _self = $(this);
+            var url = _self.data('url');
+            $.ajax({
+                url: url,
+                dataType:'json',
+                success: function(data) {
+                    var zip_name = data.data;
+                    if(data.status == 1){
+                        layer.msg(data.msg, {icon: 1});
+                        window.location.href="http://www.layui.com/images/files/down" + zip_name;
+                    }else{
+                        layer.msg(data.msg, {icon: 0, time: 2000, shade: 0.3});
+                    }
+                    is_clicking = false;
+                },
+                error: function(){
+                    obj.text(title);
+                    is_clicking = false;
+                }
+            })
+        },
         export_load_lists:function (event) {
             var _self = $(this);
             cwh_export_load(_self,layer);
@@ -240,6 +262,25 @@ layui.config({
                 open(url, title, width, height);
             }else if (layEvent === 'fun') { //取消
                 layui.tool_event(obj,_self);
+            }else if (layEvent === 'down'){ //下载
+                $.ajax({
+                    url: url,
+                    dataType:'json',
+                    success: function(data) {
+                        var zip_name = data.data;
+                        if(data.status == 1){
+                            layer.msg(data.msg, {icon: 1});
+                            window.location.href="http://www.layui.com/images/files/down/" + zip_name;
+                        }else{
+                            layer.msg(data.msg, {icon: 0, time: 2000, shade: 0.3});
+                        }
+                        is_clicking = false;
+                    },
+                    error: function(){
+                        obj.text(title);
+                        is_clicking = false;
+                    }
+                })
             }
         });
     }
