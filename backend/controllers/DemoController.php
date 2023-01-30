@@ -61,13 +61,19 @@ class DemoController extends BaseController
             $model = new Demo();
             $post = $req->post();
             $model['files'] = '';
+            $model['files_size'] = '';
             if(isset($post['word'])){
                 $files = [];
+                $file_name = [];
                 foreach($post['word'] as $v){
                     $files[] = ['file' => $v];
+                    $name = explode(' ',$v);
+                    $file_name[] = ['file' => $name[0]];
                 }
                 $files = json_encode($files,JSON_UNESCAPED_UNICODE);
-                $model['files'] = $files;
+                $file_name = json_encode($file_name,JSON_UNESCAPED_UNICODE);
+                $model['files'] = $file_name;
+                $model['files_size'] = $files;
             }
             $model['title'] = $post['title'];
             $model['desc'] = $post['desc'];
@@ -97,8 +103,8 @@ class DemoController extends BaseController
         }
         $model = $this->findModel($id);
         $files = [];
-        if(!empty($model['files'])){
-            foreach(json_decode($model['files']) as $v){
+        if(!empty($model['files_size'])){
+            foreach(json_decode($model['files_size']) as $v){
                 $files[] = $v->file;
             }
             $files = json_encode($files,JSON_UNESCAPED_UNICODE);
@@ -107,13 +113,19 @@ class DemoController extends BaseController
             Yii::$app->response->format = Response::FORMAT_JSON;
             $post = $req->post();
             $model['files'] = '';
+            $model['files_size'] = '';
             if(isset($post['word'])){
                 $files = [];
+                $file_name = [];
                 foreach($post['word'] as $v){
                     $files[] = ['file' => $v];
+                    $name = explode(' ',$v);
+                    $file_name[] = ['file' => $name[0]];
                 }
                 $files = json_encode($files,JSON_UNESCAPED_UNICODE);
-                $model['files'] = $files;
+                $file_name = json_encode($file_name,JSON_UNESCAPED_UNICODE);
+                $model['files'] = $file_name;
+                $model['files_size'] = $files;
             }
             $model['title'] = $post['title'];
             $model['desc'] = $post['desc'];

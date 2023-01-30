@@ -104,9 +104,16 @@ class AppController extends BaseController
             return $this->FormatArray(self::REQUEST_FAIL, "上传失败");
         }
 
+        $size = filesize("F:/wamp64/www/layui/backend/web/images/files/".$filename);
+        $filesize = round($size/1024,2).'KB';
+        $size = round($size/1024,2);
+        if($size >= 1024){
+            $filesize = round($size/1024,2).'MB';
+        }
         $data = [];
         $data['file'] ="/images/files/".$filename;
         $data['name'] = $filename;
+        $data['size'] = $filesize;
         return $this->FormatArray(self::REQUEST_SUCCESS, "上传成功", $data);
     }
 

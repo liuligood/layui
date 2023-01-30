@@ -53,7 +53,8 @@ layui.config({
             //console.log(item); //获取当前触发上传的元素，layui 2.1.0 新增
             if (res.status == 1) {
                 layer.msg(res.msg, {icon: 1});
-                add_tag(res.data.name);
+                var name = res.data.name + " " + res.data.size;
+                add_tag(name);
             } else if (res.status == 0){
                 layer.msg(res.msg, {icon: 5});
                 if(res.data.key) {
