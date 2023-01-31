@@ -79,7 +79,6 @@ class DemoController extends BaseController
             $model['desc'] = $post['desc'];
             $model['status'] = 1;
             $model['goods_img'] = $post['goods_img'];
-            $model['files'] = empty($files) ? '' : $files;
             if ($model->save()) {
                 return $this->FormatArray(self::REQUEST_SUCCESS, "添加成功", []);
             } else {

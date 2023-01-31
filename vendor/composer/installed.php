@@ -3,7 +3,7 @@
         'name' => 'yiisoft/yii2-app-advanced',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '1e196cde8b497ee1f38a3f59379d20d8c6a9c3f5',
+        'reference' => '70475efb3b48686edd7ba4c16b8b8a9ccd4a21f9',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -174,6 +174,15 @@
             'install_path' => __DIR__ . '/../doctrine/instantiator',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'easy-task/easy-task' => array(
+            'pretty_version' => 'V2.4.5',
+            'version' => '2.4.5.0',
+            'reference' => '3b5245ebee8624cdaa0b609547e9cbc01dffbd0b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../easy-task/easy-task',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'ergebnis/faker' => array(
             'dev_requirement' => true,
@@ -865,7 +874,7 @@
         'yiisoft/yii2-app-advanced' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '1e196cde8b497ee1f38a3f59379d20d8c6a9c3f5',
+            'reference' => '70475efb3b48686edd7ba4c16b8b8a9ccd4a21f9',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

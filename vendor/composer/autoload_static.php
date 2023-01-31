@@ -130,6 +130,10 @@ class ComposerStaticInitd8701901dc056bc963fd809704e08982
         array (
             'Faker\\' => 6,
         ),
+        'E' => 
+        array (
+            'EasyTask\\' => 9,
+        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -386,6 +390,10 @@ class ComposerStaticInitd8701901dc056bc963fd809704e08982
         'Faker\\' => 
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
+        ),
+        'EasyTask\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/easy-task/easy-task/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

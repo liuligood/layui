@@ -130,7 +130,7 @@ class AppController extends BaseController
         $first_filename = 'F:/wamp64/www/layui/backend/web';
         $id = $req->get('id');
         $model = Demo::findOne($id);
-        if(empty($model['goods_img']) && empty($model['files'])){
+        if($model['goods_img'] == '[]' && empty($model['files'])){
             return $this->FormatArray(self::REQUEST_FAIL, "图片或者文件为空,下载失败");
         }
         $img = empty($model['goods_img']) ? [] : json_decode($model['goods_img']);
