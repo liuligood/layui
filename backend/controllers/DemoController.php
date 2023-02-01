@@ -78,7 +78,7 @@ class DemoController extends BaseController
             $model['title'] = $post['title'];
             $model['desc'] = $post['desc'];
             $model['status'] = 1;
-            $model['goods_img'] = $post['goods_img'];
+            $model['goods_img'] = empty($post['goods_img']) ? "[]" : $post['goods_img'];
             if ($model->save()) {
                 return $this->FormatArray(self::REQUEST_SUCCESS, "添加成功", []);
             } else {
@@ -102,11 +102,18 @@ class DemoController extends BaseController
         }
         $model = $this->findModel($id);
         $files = [];
+        $list = [];
         if(!empty($model['files_size'])){
             foreach(json_decode($model['files_size']) as $v){
                 $files[] = $v->file;
             }
             $files = json_encode($files,JSON_UNESCAPED_UNICODE);
+        }
+        if(!empty($model['files'])){
+            foreach(json_decode($model['files']) as $v){
+                $list[] = $v->file;
+            }
+            $list = json_encode($list,JSON_UNESCAPED_UNICODE);
         }
         if ($req->isPost) {
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -136,7 +143,7 @@ class DemoController extends BaseController
                 return $this->FormatArray(self::REQUEST_FAIL, $model->getErrorSummary(false)[0], []);
             }
         } else {
-            return $this->render('update', ['info' => $model->toArray(),'files'=>$files]);
+            return $this->render('update', ['info' => $model->toArray(),'files'=>$files,'files_name'=>$list]);
         }
     }
 
@@ -169,11 +176,19 @@ class DemoController extends BaseController
 
         $data = [];
         foreach ($list as $k => $v) {
-            $url = json_decode($v['goods_img']);
-            $img = $url[0]->img;
+            $imgs = false;
+            if($v['goods_img'] != '[]'){
+                $url = json_decode($v['goods_img']);
+                $img = $url[0]->img;
+                $imgs = true;
+            }
             $data[$k]['title'] = $v['title'];
             $data[$k]['desc'] = $v['desc'];
-            $data[$k]['goods_img'] = "http://www.layui.com".$img;
+            if($imgs === true){
+                $data[$k]['goods_img'] = "http://www.layui.com".$img;
+            }else{
+                $data[$k]['goods_img'] = "";
+            }
         }
         $column = [
             'title' => '标题',

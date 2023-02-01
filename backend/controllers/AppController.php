@@ -131,7 +131,7 @@ class AppController extends BaseController
         $id = $req->get('id');
         $model = Demo::findOne($id);
         if($model['goods_img'] == '[]' && empty($model['files'])){
-            return $this->FormatArray(self::REQUEST_FAIL, "图片或者文件为空,下载失败");
+            return $this->FormatArray(self::REQUEST_FAIL, "图片和文件都为空,下载失败");
         }
         $img = empty($model['goods_img']) ? [] : json_decode($model['goods_img']);
         $file = empty($model['files']) ? [] : json_decode($model['files']);

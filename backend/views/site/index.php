@@ -53,6 +53,8 @@
     <div class="loader-main">
         <div class="loader"></div>
     </div>
+    <div class="layui-footer">
+    </div>
 </div>
 <!-- 移 动 端 便 捷 操 作 -->
 <div class="pear-collasped-pe collaspe">

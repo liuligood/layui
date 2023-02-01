@@ -11,6 +11,12 @@ use yii\helpers\Url;
     html {
         background: #fff;
     }
+    #file{
+        color: white;
+    }
+    #file:hover{
+        color: #706542;
+    }
 </style>
 <form class="layui-form layui-row" id="update_goods" action="<?=Url::to(['demo/update'])?>">
 
@@ -45,6 +51,12 @@ use yii\helpers\Url;
                     <div id="word_div" style="padding: 0 5px">
                     </div>
                     <input type="text" style="width: 647px;border:0px" id="word" placeholder="上传不是图片的文件" value="" class="layui-input" autocomplete="off" disabled>
+                </div>
+                <div class="layui-input-block" style="margin-left: 130px;margin-top: 10px">
+                    <span style="color: red;">
+                        <i class="layui-icon layui-icon-tips"></i>
+                        <div class="layui-inline">除PDF和图片文件单击为浏览,其他文件为下载</div>
+                    </span>
                 </div>
                 <div class="layui-input-block">
                     <a class="layui-btn layui-btn-warm ys-upload-down" lay-data="{url: '/app/upload-file',accept: 'file'}" style="margin-top: 10px;">上传文件</a>
@@ -152,13 +164,14 @@ use yii\helpers\Url;
 </script>
 <script id="tag_tpl" type="text/html">
     <span class="label layui-bg-blue" style="border-radius: 15px;margin: 5px 5px 0 0; padding: 3px 7px 3px 15px; font-size: 14px; display: inline-block;">
-        {{d.tag_name}}
+        <a href="/images/files/{{d.name}}" target="_blank" id="file">{{d.tag_name}}</a>
         <a href="javascript:;"><i class="layui-icon layui-icon-close del_tag" style="color: #FFFFFF;margin-left: 5px"></i></a>
         <input class="word_ipt" type="hidden" name="word[]" value="{{d.tag_name}}" >
     </span>
 </script>
 <script>
     var files = <?=empty($files) ? '1' : $files?>;
+    var files_name = <?=empty($files_name) ? '1' : $files_name?>;
 </script>
 <?=$this->registerJsFile("@adminPageJs/base/form.js?".time());?>
 <?=$this->registerJsFile("@adminPageJs/goods-selection/form.js?".time());?>

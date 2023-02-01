@@ -54,7 +54,7 @@ layui.config({
             if (res.status == 1) {
                 layer.msg(res.msg, {icon: 1});
                 var name = res.data.name + " " + res.data.size;
-                add_tag(name);
+                add_tag(name,res.data.name);
             } else if (res.status == 0){
                 layer.msg(res.msg, {icon: 5});
                 if(res.data.key) {
@@ -64,10 +64,9 @@ layui.config({
         }
     });
 
-
-    if(files != '1'){
+    if(files != '1' && files_name != '1'){
         for(var i = 0;i<files.length;i++){
-            add_tag(files[i]);
+            add_tag(files[i],files_name[i]);
         }
     }
 
@@ -151,8 +150,8 @@ layui.config({
         return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
     });
 
-    function add_tag(tag_name) {
-        if(tag_name == ''){
+    function add_tag(tag_name,name) {
+        if(tag_name == '' && name == ''){
             return;
         }
         var exist = false;
@@ -168,6 +167,7 @@ layui.config({
         var html = $('#tag_tpl').html();
         laytpl(html).render({
             tag_name:tag_name,
+            name:name,
         }, function(content){
             $('#word_div').append(content);
         });

@@ -140,13 +140,14 @@ use yii\helpers\Url;
 </script>
 <script id="tag_tpl" type="text/html">
     <span class="label layui-bg-blue" style="border-radius: 15px;margin: 5px 5px 0 0; padding: 3px 7px 3px 15px; font-size: 14px; display: inline-block;">
-        {{d.tag_name}}
+        <a href="/images/files/{{d.name}}" target="_blank" style="color: red;">{{d.tag_name}}</a>
         <a href="javascript:;"><i class="layui-icon layui-icon-close del_tag" style="color: #FFFFFF;margin-left: 5px"></i></a>
         <input class="word_ipt" type="hidden" name="word[]" value="{{d.tag_name}}" >
     </span>
 </script>
 <script>
     var files = '1';
+    var files_name = '1';
 </script>
 <?=$this->registerJsFile("@adminPageJs/base/form.js?".time());?>
 <?=$this->registerJsFile("@adminPageJs/goods-selection/form.js?".time());?>

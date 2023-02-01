@@ -25,18 +25,22 @@ layui.config({
                 param[$(this).attr('name')] = val;
             });
             //执行重载
-            table.reload(tableName, {
-                page: {
-                    curr: 1 //重新从第 1 页开始
-                },
-                //method: 'post',
-                where: param,
-                done: function(res, curr, count) {
-                    if(typeof layui.table_done_event != 'undefined') {
-                        layui.table_done_event(res, curr, count, tableName);
+            if("undefined" != typeof tableName) {
+                table.reload(tableName, {
+                    page: {
+                        curr: 1 //重新从第 1 页开始
+                    },
+                    //method: 'post',
+                    where: param,
+                    done: function (res, curr, count) {
+                        if (typeof layui.table_done_event != 'undefined') {
+                            layui.table_done_event(res, curr, count, tableName);
+                        }
                     }
-                }
-            }, 'data');
+                }, 'data');
+            }else{
+                $(this).parents('form').submit();
+            }
         },
         export_lists:function (event) {
             var _self = $(this);
