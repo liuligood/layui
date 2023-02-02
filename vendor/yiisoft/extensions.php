@@ -85,4 +85,13 @@ return array (
       '@moonland/phpexcel' => $vendorDir . '/moonlandsoft/yii2-phpexcel',
     ),
   ),
+  'godv/yii2-crontab' => 
+  array (
+    'name' => 'godv/yii2-crontab',
+    'version' => 'dev-master',
+    'alias' => 
+    array (
+      '@CrontabConsole' => $vendorDir . '/godv/yii2-crontab/src',
+    ),
+  ),
 );

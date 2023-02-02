@@ -24,7 +24,8 @@
         "moonlandsoft/yii2-phpexcel": "*",
         "tinywan/webman-permission": "^1.3",
         "mk-j/php_xlsxwriter": "^0.38.0",
-        "easy-task/easy-task": "^2.4"
+        "easy-task/easy-task": "^2.4",
+        "godv/yii2-crontab": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

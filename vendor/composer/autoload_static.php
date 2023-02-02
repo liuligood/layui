@@ -111,6 +111,7 @@ class ComposerStaticInitd8701901dc056bc963fd809704e08982
         'M' => 
         array (
             'MyCLabs\\Enum\\' => 13,
+            'Mmarica\\' => 8,
             'Matrix\\' => 7,
         ),
         'L' => 
@@ -142,6 +143,7 @@ class ComposerStaticInitd8701901dc056bc963fd809704e08982
         ),
         'C' => 
         array (
+            'CrontabConsole\\' => 15,
             'Complex\\' => 8,
             'Codeception\\PHPUnit\\' => 20,
             'Codeception\\Extension\\' => 22,
@@ -367,6 +369,10 @@ class ComposerStaticInitd8701901dc056bc963fd809704e08982
         array (
             0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
+        'Mmarica\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mmarica/display-table/src',
+        ),
         'Matrix\\' => 
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
@@ -406,6 +412,10 @@ class ComposerStaticInitd8701901dc056bc963fd809704e08982
         'DI\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-di/php-di/src',
+        ),
+        'CrontabConsole\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/godv/yii2-crontab/src',
         ),
         'Complex\\' => 
         array (
